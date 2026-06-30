@@ -295,7 +295,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  nosmai_moderation_sdk_flutter:
+  nosmai_moderation_sdk:
     dependency: "direct main"
     description:
       path: ".."

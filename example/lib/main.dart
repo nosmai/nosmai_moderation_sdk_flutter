@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:nosmai_moderation_sdk_flutter/nosmai_moderation_sdk_flutter.dart';
+import 'package:nosmai_moderation_sdk/nosmai_moderation_sdk.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'live_screen.dart';

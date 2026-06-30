@@ -1,9 +1,9 @@
 #
 # To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint nosmai_moderation_sdk_flutter.podspec` to validate.
+# Run `pod lib lint nosmai_moderation_sdk.podspec` to validate.
 #
 Pod::Spec.new do |s|
-  s.name             = 'nosmai_moderation_sdk_flutter'
+  s.name             = 'nosmai_moderation_sdk'
   s.version          = '1.0.0'
   s.summary          = 'On-device content + text moderation for Flutter.'
   s.description      = <<-DESC
@@ -45,5 +45,5 @@ toxicity, powered by the native Nosmai SDK. Fully offline.
   }
 
   # Privacy manifest for the plugin's own required-reason API use.
-  s.resource_bundles = { 'nosmai_moderation_sdk_flutter_privacy' => ['Resources/PrivacyInfo.xcprivacy'] }
+  s.resource_bundles = { 'nosmai_moderation_sdk_privacy' => ['Resources/PrivacyInfo.xcprivacy'] }
 end

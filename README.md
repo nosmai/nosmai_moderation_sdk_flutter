@@ -1,4 +1,4 @@
-# nosmai_moderation_sdk_flutter
+# nosmai_moderation_sdk
 
 On-device content and text moderation for Flutter, powered by the native Nosmai
 SDK. It detects weapons, drugs, cigarettes, and alcohol (object detection) and
@@ -28,7 +28,7 @@ or message leaves the device.
 Add the plugin:
 
 ```bash
-flutter pub add nosmai_moderation_sdk_flutter
+flutter pub add nosmai_moderation_sdk
 ```
 
 The native SDK is not bundled inside this plugin because it is large. Each
@@ -77,7 +77,7 @@ Add it to your app module:
 ## Usage
 
 ```dart
-import 'package:nosmai_moderation_sdk_flutter/nosmai_moderation_sdk_flutter.dart';
+import 'package:nosmai_moderation_sdk/nosmai_moderation_sdk.dart';
 
 // Initialize once at startup. Load only the models you need.
 final init = await NosmaiModeration.initialize(
