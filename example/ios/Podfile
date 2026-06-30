@@ -1,0 +1,77 @@
+# The Nosmai SDK requires iOS 14.0+.
+platform :ios, '14.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
+
+target 'Runner' do
+  # Static linkage: the plugin links the native SDK + ONNX Runtime into the app
+  # executable (like the standalone demo). ORT and TFLite both vendor XNNPACK, so
+  # the executable link reports duplicate-symbol WARNINGS (harmless — identical
+  # XNNPACK); a dynamic-framework link would treat them as hard errors.
+  use_frameworks! :linkage => :static
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+
+      # permission_handler gates each permission behind a compile-time macro that
+      # defaults to 0 (handler compiled out -> request returns "denied" with no
+      # system prompt). Enable the ones this app declares in Info.plist.
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] += [
+        'PERMISSION_CAMERA=1',
+        'PERMISSION_PHOTOS=1',
+        'PERMISSION_MICROPHONE=1',
+      ]
+    end
+  end
+
+  # The Nosmai SDK's prebuilt slices are arm64-only (force-loaded into the plugin
+  # framework by the podspec). The Runner app must therefore also build arm64-only
+  # for the simulator — exclude x86_64 (Intel simulator) so the app and the plugin
+  # framework match. Add an x86_64 simulator slice to the SDK if Intel-Mac
+  # simulator support is needed.
+  installer.aggregate_targets.each do |agg|
+    project = agg.user_project
+    next unless project
+    project.native_targets.each do |t|
+      next unless t.name == 'Runner'
+      t.build_configurations.each do |c|
+        c.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'i386 x86_64'
+      end
+    end
+    project.save
+  end
+end

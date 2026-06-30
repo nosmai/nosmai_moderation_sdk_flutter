@@ -1,0 +1,21 @@
+Nosmai Moderation SDK — Proprietary License
+
+Copyright (c) 2026 Nosmai. All rights reserved.
+
+This software and its associated model files, native libraries, and
+documentation (the "Software") are the confidential and proprietary property of
+Nosmai. Use of the Software is permitted only under a valid commercial license
+agreement with Nosmai and a valid license key issued by Nosmai.
+
+You may NOT, without prior written permission from Nosmai:
+  - copy, redistribute, sublicense, sell, or publish the Software;
+  - reverse engineer, decompile, or disassemble the Software or its models, or
+    attempt to extract, decrypt, or derive the bundled model files;
+  - remove or alter any proprietary notices.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL NOSMAI BE LIABLE
+FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE.
+
+For licensing inquiries: support@nosmai.com

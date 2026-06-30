@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.nosmai.nosmai_moderation_sdk">
+  <!-- The live-camera moderation path needs the camera. Declared here so it merges
+       into consumer apps that use NosmaiCameraPreview/NosmaiLive. The camera is
+       optional (image/video/text moderation work without it), so it is not
+       android:required. -->
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-feature android:name="android.hardware.camera.any" android:required="false" />
+</manifest>

@@ -1,0 +1,31 @@
+name: nosmai_moderation_sdk_flutter
+description: "On-device content + text moderation for Flutter — image NSFW, object detection (weapon/drug/cigarette/alcohol) and chat toxicity, powered by the native Nosmai SDK."
+version: 1.0.0
+homepage: https://github.com/nosmai/nosmai_moderation_sdk_flutter
+repository: https://github.com/nosmai/nosmai_moderation_sdk_flutter
+issue_tracker: https://github.com/nosmai/nosmai_moderation_sdk_flutter/issues
+topics: [moderation, nsfw, on-device, computer-vision, content-moderation]
+
+environment:
+  sdk: ^3.11.0
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  pigeon: ^22.0.0
+
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.nosmai.nosmai_moderation_sdk
+        pluginClass: NosmaiModerationSdkPlugin
+      ios:
+        pluginClass: NosmaiModerationSdkPlugin
